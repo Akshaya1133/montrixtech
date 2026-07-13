@@ -129,11 +129,12 @@ export default function ContactPage() {
               <div className="space-y-5 text-gray-700">
                 <div>
                   <h3 className="text-[#12B8B0] font-semibold text-sm uppercase tracking-wider mb-1">Email</h3>
-                  <p className="text-sm">montrixtech@gmail.com</p>
+                  <p className="text-sm">contact@montrixtech.in</p>
                 </div>
                 <div>
                   <h3 className="text-[#12B8B0] font-semibold text-sm uppercase tracking-wider mb-1">Phone</h3>
                   <p className="text-sm">+91 90351 96480</p>
+                  <p className="text-sm">+91 77957 95859</p>
                 </div>
                 <div>
                   <h3 className="text-[#12B8B0] font-semibold text-sm uppercase tracking-wider mb-3">Location</h3>

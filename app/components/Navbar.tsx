@@ -33,10 +33,10 @@ export default function Navbar() {
           <Image
             src="/images/TECH-logo.png"
             alt="MontrixTech"
-            width={200}
-            height={60}
+            width={240}
+            height={72}
             priority
-            className="w-28 sm:w-36 lg:w-40 h-auto"
+            className="w-32 sm:w-44 lg:w-48 h-auto"
           />
         </Link>
 

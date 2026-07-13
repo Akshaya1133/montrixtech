@@ -6,6 +6,10 @@ import {
   FaEnvelope,
   FaPhoneAlt,
   FaMapMarkerAlt,
+  FaInstagram,
+  FaFacebookF,
+  FaWhatsapp,
+  FaLinkedinIn,
 } from "react-icons/fa";
 
 export default function Footer() {
@@ -15,7 +19,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 py-16">
 
         {/* Top */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
 
           {/* Company */}
 
@@ -40,20 +44,20 @@ export default function Footer() {
 
           <div>
 
-            <h4 className="text-3xl font-bold">
+            <h4 className="text-xl font-semibold">
               Services
             </h4>
 
             <div className="w-14 h-1 bg-[#12B8B0] rounded-full mt-3 mb-8" />
 
-            <ul className="space-y-5 text-lg text-gray-700">
+            <ul className="space-y-4 text-base text-gray-700">
 
               <li>
                 <Link
                   href="/services#web-development"
                   className="hover:text-[#12B8B0]"
                 >
-                  Web Development
+                  Website Development
                 </Link>
               </li>
 
@@ -62,7 +66,16 @@ export default function Footer() {
                   href="/services#mobile-apps"
                   className="hover:text-[#12B8B0]"
                 >
-                  Mobile Apps
+                  Mobile App Development
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  href="/services#custom-software"
+                  className="hover:text-[#12B8B0]"
+                >
+                  Custom Software Development
                 </Link>
               </li>
 
@@ -84,6 +97,15 @@ export default function Footer() {
                 </Link>
               </li>
 
+              <li>
+                <Link
+                  href="/services#ui-ux-design"
+                  className="hover:text-[#12B8B0]"
+                >
+                  UI/UX Design
+                </Link>
+              </li>
+
             </ul>
 
           </div>
@@ -92,13 +114,13 @@ export default function Footer() {
 
           <div>
 
-            <h4 className="text-3xl font-bold">
+            <h4 className="text-xl font-semibold">
               Company
             </h4>
 
             <div className="w-14 h-1 bg-[#12B8B0] rounded-full mt-3 mb-8" />
 
-            <ul className="space-y-5 text-lg text-gray-700">
+            <ul className="space-y-4 text-base text-gray-700">
 
               <li>
                 <Link
@@ -106,6 +128,15 @@ export default function Footer() {
                   className="hover:text-[#12B8B0]"
                 >
                   About Us
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  href="/services"
+                  className="hover:text-[#12B8B0]"
+                >
+                  Services
                 </Link>
               </li>
 
@@ -126,37 +157,39 @@ export default function Footer() {
 
           <div>
 
-            <h4 className="text-3xl font-bold">
+            <h4 className="text-xl font-semibold">
               Contact
             </h4>
 
             <div className="w-14 h-1 bg-[#12B8B0] rounded-full mt-3 mb-8" />
 
-            <div className="space-y-5 text-lg text-gray-700">
+            <div className="space-y-5 text-sm text-gray-700">
 
-              <div className="flex gap-4 items-center">
-                <FaEnvelope className="text-[#12B8B0]" />
-                montrixtech@gmail.com
+              <div className="flex gap-4 items-start">
+                <FaEnvelope className="text-[#12B8B0] mt-1" />
+                <div className="space-y-1">
+                  <p>contact@montrixtech.in</p>
+                </div>
               </div>
 
-              <div className="flex gap-4 items-center">
-                <FaPhoneAlt className="text-[#12B8B0]" />
-                +91 90351 96480
+              <div className="flex gap-4 items-start">
+                <FaPhoneAlt className="text-[#12B8B0] mt-1" />
+                <div className="space-y-1">
+                  <p>+91 90351 96480</p>
+                  <p>+91 77957 95859</p>
+                </div>
               </div>
 
-              <div className="flex gap-4">
-
-                <FaMapMarkerAlt className="text-[#12B8B0] mt-1" />
-
-                <div className="leading-8">
-
+              <div className="flex gap-3 items-start">
+                <FaMapMarkerAlt size={28} className="text-[#12B8B0] mt-1" />
+                <div className="leading-7 text-base">
                   <a
                     href="https://maps.app.goo.gl/FC5Z3RgsYyLTznpL7"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-[#12B8B0]"
                   >
-                    MONTRIXTECH PRIVATE LIMITED
+                    <span className="whitespace-nowrap">MONTRIXTECH PRIVATE LIMITED</span>
                     <br />
                     No 12, 1st Main, 9th Cross
                     <br />
@@ -164,9 +197,40 @@ export default function Footer() {
                     <br />
                     Yelahanka, Bangalore - 560064
                   </a>
-
                 </div>
+              </div>
 
+              <div className="flex items-center gap-5 pt-4 text-[#12B8B0]">
+                <a
+                  href="https://www.instagram.com/montrixtech_?utm_source=qr&igsh=NWw5a2Y1bTBiYmdt"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#0A2E57]"
+                >
+                  <FaInstagram size={20} />
+                </a>
+                <a
+                  href="https://www.facebook.com/share/18rLPk6iB6/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#0A2E57]"
+                >
+                  <FaFacebookF size={20} />
+                </a>
+                <a
+                  href="https://wa.me/919035196480"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#0A2E57]"
+                >
+                  <FaWhatsapp size={20} />
+                </a>
+                <a
+                  href="#"
+                  className="hover:text-[#0A2E57]"
+                >
+                  <FaLinkedinIn size={20} />
+                </a>
               </div>
 
             </div>

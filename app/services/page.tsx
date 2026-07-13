@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 export default function ServicesPage() {
   const services = [
     {
+      id: "web-development",
       title: "Website Development",
       details: [
         "Corporate Websites",
@@ -19,6 +20,7 @@ export default function ServicesPage() {
       ],
     },
     {
+      id: "mobile-apps",
       title: "Mobile App Development",
       details: [
         "Android Apps",
@@ -29,6 +31,7 @@ export default function ServicesPage() {
       ],
     },
     {
+      id: "custom-software",
       title: "Custom Software Development",
       details: [
         "ERP Systems",
@@ -39,6 +42,7 @@ export default function ServicesPage() {
       ],
     },
     {
+      id: "cloud-solutions",
       title: "Cloud Solutions",
       details: [
         "AWS Deployment",
@@ -49,6 +53,7 @@ export default function ServicesPage() {
       ],
     },
     {
+      id: "ai-solutions",
       title: "AI Solutions",
       details: [
         "AI Chatbots",
@@ -59,6 +64,7 @@ export default function ServicesPage() {
       ],
     },
     {
+      id: "ui-ux-design",
       title: "UI/UX Design",
       details: [
         "Wireframing",
@@ -225,13 +231,7 @@ shadow-[0_20px_60px_rgba(18,184,176,0.20)]
             <div className="space-y-6">
               {services.slice(0, 3).map((service, index) => (
   <div
-    id={
-      service.title === "Website Development"
-        ? "web-development"
-        : service.title === "Mobile App Development"
-        ? "mobile-apps"
-        : "custom-software"
-    }
+    id={service.id}
     key={service.title}
     onMouseEnter={() => showService(service, index)}
     className={getCardClasses(service)}
@@ -245,17 +245,11 @@ shadow-[0_20px_60px_rgba(18,184,176,0.20)]
             <div className="space-y-6">
               {services.slice(3, 6).map((service, index) => (
                 <div
-                  id={
-                    service.title === "Website Development"
-                      ? "web-development"
-                      : service.title === "Mobile App Development"
-                      ? "mobile-apps"
-                      : "custom-software"
-                  }
-                   key={service.title}
-    onMouseEnter={() => showService(service, index + 3)}
-    className={getCardClasses(service)}
-  >
+                  id={service.id}
+                  key={service.title}
+                  onMouseEnter={() => showService(service, index + 3)}
+                  className={getCardClasses(service)}
+                >
                   <h2 className="text-2xl font-bold text-[#0A2E57] text-right">{service.title}</h2>
                 </div>
               ))}

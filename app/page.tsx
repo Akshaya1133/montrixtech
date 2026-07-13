@@ -80,7 +80,7 @@ export default function Home() {
           <p className="font-semibold text-[#12B8B0]">
             Email
           </p>
-          <p>montrixtech@gmail.com</p>
+          <p>contact@montrixtech.in</p>
         </div>
 
         <div>
@@ -88,6 +88,7 @@ export default function Home() {
             Phone
           </p>
           <p>+91 90351 96480</p>
+          <p>+91 77957 95859</p>
         </div>
 
         <div>
