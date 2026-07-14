@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 import {
   FaReact,
@@ -8,6 +9,7 @@ import {
   FaJava,
   FaAws,
   FaPython,
+  FaChevronDown,
 } from "react-icons/fa";
 
 import {
@@ -22,6 +24,21 @@ import {
 import { BsRobot } from "react-icons/bs";
 
 export default function TechStack() {
+  const [expanded, setExpanded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const isMobileScreen = window.innerWidth < 1024;
+    setIsMobile(isMobileScreen);
+
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const technologies = [
     { name: "React", icon: <FaReact size={50} /> },
     { name: "Next.js", icon: <SiNextdotjs size={50} /> },
@@ -38,6 +55,11 @@ export default function TechStack() {
     { name: "Docker", icon: <SiDocker size={50} /> },
     { name: "Git", icon: <SiGit size={50} /> },
   ];
+
+  // Show all on desktop, limit to 6 on mobile unless expanded
+  const itemsToShow = isMobile && !expanded ? 6 : technologies.length;
+  const visibleTechs = technologies.slice(0, itemsToShow);
+  const hasMore = isMobile && technologies.length > 6;
 
   return (
     <section className="relative px-5 sm:px-8 lg:px-10 py-12 md:py-14 lg:py-16">
@@ -69,7 +91,7 @@ export default function TechStack() {
         {/* Technology Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
 
-          {technologies.map((tech, index) => (
+          {visibleTechs.map((tech, index) => (
             <motion.div
               key={tech.name}
               initial={{ opacity: 0, y: 50 }}
@@ -117,6 +139,74 @@ export default function TechStack() {
           ))}
 
         </div>
+
+        {/* View More Button - Only visible on mobile when collapsed */}
+        {hasMore && !expanded && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.5 }}
+            className="flex justify-center mt-8"
+          >
+            <button
+              onClick={() => setExpanded(true)}
+              className="
+                flex
+                items-center
+                gap-2
+                bg-[#12B8B0]
+                text-white
+                px-6
+                py-3
+                rounded-lg
+                font-semibold
+                hover:bg-[#0A2E57]
+                transition-all
+                duration-300
+                hover:-translate-y-1
+                shadow-lg
+              "
+            >
+              View More Technologies
+              <FaChevronDown size={16} />
+            </button>
+          </motion.div>
+        )}
+
+        {/* Collapse Button - Only visible when expanded on mobile */}
+        {hasMore && expanded && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.5 }}
+            className="flex justify-center mt-8"
+          >
+            <button
+              onClick={() => setExpanded(false)}
+              className="
+                flex
+                items-center
+                gap-2
+                bg-gray-600
+                text-white
+                px-6
+                py-3
+                rounded-lg
+                font-semibold
+                hover:bg-gray-700
+                transition-all
+                duration-300
+                hover:-translate-y-1
+                shadow-lg
+              "
+            >
+              Show Less
+              <FaChevronDown size={16} className="rotate-180" />
+            </button>
+          </motion.div>
+        )}
 
         {/* Bottom Text */}
         <motion.div
