@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import PageTransition from "../components/PageTransition";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { X } from "lucide-react";
 
 export default function ServicesPage() {
   const services = [
@@ -142,7 +143,7 @@ export default function ServicesPage() {
 };
  return (
     <PageTransition>
-<main className="min-h-screen relative overflow-hidden bg-[radial-gradient(circle_at_top,_#dff8f6_0%,_#eef2f5_45%,_#f8f9fb_100%)] text-black">
+<main className="min-h-screen relative overflow-x-hidden bg-[radial-gradient(circle_at_top,_#dff8f6_0%,_#eef2f5_45%,_#f8f9fb_100%)] text-black">
         <Navbar />
 
         {/* Header */}
@@ -191,7 +192,32 @@ shadow-[0_20px_60px_rgba(18,184,176,0.20)]
   blur-3xl
   "
 />
-<h2 className="text-3xl md:text-4xl font-bold text-[#12B8B0] mb-4">        
+<button
+  onClick={hideService}
+  aria-label="Close"
+  className="
+    absolute
+    top-4
+    right-4
+    z-10
+    flex
+    h-9
+    w-9
+    items-center
+    justify-center
+    rounded-full
+    bg-gray-100
+    text-gray-600
+    hover:bg-[#12B8B0]
+    hover:text-white
+    transition-all
+    duration-300
+  "
+>
+  <X size={18} />
+</button>
+
+<h2 className="text-3xl md:text-4xl font-bold text-[#12B8B0] mb-4 pr-8">        
           {activeService.title}
               </h2>
 <div className="grid grid-cols-2 gap-4 mt-6">
@@ -234,6 +260,7 @@ shadow-[0_20px_60px_rgba(18,184,176,0.20)]
     id={service.id}
     key={service.title}
     onMouseEnter={() => showService(service, index)}
+    onClick={() => showService(service, index)}
     className={getCardClasses(service)}
   >
                   <h2 className="text-2xl font-bold text-[#0A2E57]">{service.title}</h2>
@@ -248,6 +275,7 @@ shadow-[0_20px_60px_rgba(18,184,176,0.20)]
                   id={service.id}
                   key={service.title}
                   onMouseEnter={() => showService(service, index + 3)}
+                  onClick={() => showService(service, index + 3)}
                   className={getCardClasses(service)}
                 >
                   <h2 className="text-2xl font-bold text-[#0A2E57] text-right">{service.title}</h2>
@@ -268,6 +296,7 @@ shadow-[0_20px_60px_rgba(18,184,176,0.20)]
     From websites to AI-powered solutions, we help businesses scale faster.
   </p>
 
+          
           <a
             href="/contact"
             className="
