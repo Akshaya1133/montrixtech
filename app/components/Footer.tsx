@@ -163,7 +163,7 @@ export default function Footer() {
 
             <div className="w-14 h-1 bg-[#12B8B0] rounded-full mt-3 mb-8" />
 
-            <div className="space-y-5 text-sm text-gray-700">
+            <div className="space-y-5 text-base text-gray-700">
 
               <div className="flex gap-4 items-start">
                 <FaEnvelope className="text-[#12B8B0] mt-1" />
