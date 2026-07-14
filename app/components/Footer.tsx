@@ -10,6 +10,7 @@ import {
   FaFacebookF,
   FaWhatsapp,
   FaLinkedinIn,
+  FaYoutube,
 } from "react-icons/fa";
 
 export default function Footer() {
@@ -218,12 +219,36 @@ export default function Footer() {
                   <FaFacebookF size={20} />
                 </a>
                 <a
+                  href="https://x.com/MontrixTech"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#0A2E57]"
+                >
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.657l-5.214-6.817L5.769 21.75H2.46l7.73-8.835L1.54 2.25h6.822l4.822 6.383L18.244 2.25zM17.51 19.389h1.828L6.362 4.156H4.432L17.51 19.389z" />
+                  </svg>
+                </a>
+                <a
                   href="https://wa.me/919035196480"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-[#0A2E57]"
                 >
                   <FaWhatsapp size={20} />
+                </a>
+                <a
+                  href="https://www.youtube.com/channel/UCQBF4NK6hXWmFnpWNpeV0Gw"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#0A2E57]"
+                >
+                  <FaYoutube size={20} />
                 </a>
                 <a
                   href="#"

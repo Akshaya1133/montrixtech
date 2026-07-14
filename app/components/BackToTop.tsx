@@ -5,8 +5,11 @@ import { FaArrowUp } from "react-icons/fa";
 
 export default function BackToTop() {
   const [visible, setVisible] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+
     const toggle = () => {
       setVisible(window.scrollY > 400);
     };
@@ -15,6 +18,10 @@ export default function BackToTop() {
 
     return () => window.removeEventListener("scroll", toggle);
   }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <button
