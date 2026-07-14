@@ -110,9 +110,6 @@ export default function ServicesPage() {
       flex
       items-center
       cursor-pointer
-      hover:-translate-y-2
-      hover:border-[#12B8B0]
-      hover:shadow-xl
       transition-all
       duration-300
     `;
@@ -159,13 +156,12 @@ export default function ServicesPage() {
         </section>
 
         {/* Services Layout */}
-        <section className="px-10 pb-24 relative" onMouseLeave={hideService}>
+        <section className="px-10 pb-24 relative">
           {activeService && (
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.18 }}
-              onMouseLeave={hideService}
 className={`${getPopupPositionClass()} 
 fixed
 top-[58%]
@@ -259,7 +255,6 @@ shadow-[0_20px_60px_rgba(18,184,176,0.20)]
   <div
     id={service.id}
     key={service.title}
-    onMouseEnter={() => showService(service, index)}
     onClick={() => showService(service, index)}
     className={getCardClasses(service)}
   >
@@ -274,7 +269,6 @@ shadow-[0_20px_60px_rgba(18,184,176,0.20)]
                 <div
                   id={service.id}
                   key={service.title}
-                  onMouseEnter={() => showService(service, index + 3)}
                   onClick={() => showService(service, index + 3)}
                   className={getCardClasses(service)}
                 >
