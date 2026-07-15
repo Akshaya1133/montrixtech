@@ -3,7 +3,7 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import PageTransition from "../components/PageTransition";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { X } from "lucide-react";
 
@@ -79,15 +79,80 @@ export default function ServicesPage() {
 
   const [activeService, setActiveService] = useState<typeof services[number] | null>(null);
   const [activeServiceIndex, setActiveServiceIndex] = useState<number | null>(null);
-  const showService = (service: typeof services[number], index: number) => {
+  const closedAt = useRef(0);
+  const [canHover, setCanHover] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const mq = window.matchMedia?.("(hover: hover)");
+    const update = (e: MediaQueryListEvent | MediaQueryList) => {
+      // Some browsers pass MediaQueryListEvent, others MediaQueryList
+      setCanHover(!!(e && (e as any).matches));
+    };
+
+    if (mq) {
+      update(mq);
+      if (mq.addEventListener) {
+        mq.addEventListener("change", update as any);
+      } else if (mq.addListener) {
+        mq.addListener(update as any);
+      }
+    }
+
+    return () => {
+      if (!mq) return;
+      if (mq.removeEventListener) {
+        mq.removeEventListener("change", update as any);
+      } else if (mq.removeListener) {
+        mq.removeListener(update as any);
+      }
+    };
+  }, []);
+ const showService = (service: typeof services[number], index: number) => {
     setActiveService(service);
     setActiveServiceIndex(index);
   };
+
+  const toggleService = (service: typeof services[number], index: number) => {
+    if (activeService?.title === service.title) {
+      hideService();
+    } else if (canOpenNow()) {
+      showService(service, index);
+    }
+  };
+
+  const handleHover = (service: typeof services[number], index: number) => {
+    // Handler attachment is already gated by `canHover`.
+    // Keep this function free of `canHover` references to avoid runtime errors
+    // if an older JS bundle executes this code briefly during HMR.
+    if (canOpenNow()) {
+      showService(service, index);
+    }
+  };
+
   const hideService = () => {
+    closedAt.current = Date.now();
     setActiveService(null);
     setActiveServiceIndex(null);
   };
 
+  const canOpenNow = () => Date.now() - closedAt.current > 300;
+
+  useEffect(() => {
+    if (!activeService) return;
+
+    const handleScroll = () => {
+      hideService();
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [activeService]);
+  
   const getPopupPositionClass = () => {
     return "left-1/2";
   };
@@ -110,6 +175,9 @@ export default function ServicesPage() {
       flex
       items-center
       cursor-pointer
+      hover:-translate-y-2
+      hover:border-[#12B8B0]
+      hover:shadow-xl
       transition-all
       duration-300
     `;
@@ -156,13 +224,13 @@ export default function ServicesPage() {
         </section>
 
         {/* Services Layout */}
-        <section className="px-10 pb-24 relative">
-          {activeService && (
+<section className="px-10 pb-24 relative">
+            {activeService && (
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.18 }}
-className={`${getPopupPositionClass()} 
+              className={`${getPopupPositionClass()}
 fixed
 top-[58%]
 z-20
@@ -255,7 +323,8 @@ shadow-[0_20px_60px_rgba(18,184,176,0.20)]
   <div
     id={service.id}
     key={service.title}
-    onClick={() => showService(service, index)}
+    onMouseEnter={canHover ? () => handleHover(service, index) : undefined}
+    onClick={() => toggleService(service, index)}
     className={getCardClasses(service)}
   >
                   <h2 className="text-2xl font-bold text-[#0A2E57]">{service.title}</h2>
@@ -269,7 +338,8 @@ shadow-[0_20px_60px_rgba(18,184,176,0.20)]
                 <div
                   id={service.id}
                   key={service.title}
-                  onClick={() => showService(service, index + 3)}
+                  onMouseEnter={canHover ? () => handleHover(service, index + 3) : undefined}
+                  onClick={() => toggleService(service, index + 3)}
                   className={getCardClasses(service)}
                 >
                   <h2 className="text-2xl font-bold text-[#0A2E57] text-right">{service.title}</h2>

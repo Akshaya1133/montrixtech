@@ -9,7 +9,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <nav className="relative z-50 bg-white/80 backdrop-blur-md">
+    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md">
 
       <div
         className="
